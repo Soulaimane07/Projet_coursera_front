@@ -1,0 +1,366 @@
+{
+    "english":{
+        "title":"English",
+        "subTitle":"en",
+        "data":{
+            "dashboard":{
+                "dashboard":"Dashboard",
+                "cours": "Courses",
+                "profs":"Teachers",
+                "groups":"Groups",
+                "profTitle":"Teacher - Dashboard",
+                "StudentTitle":"Student - Dashboard",
+                "RespTitle":"Administrator - Dashboard"
+            },
+            "profile":{
+                "profile":"Profile",
+                "profTitle":"Teacher - Profile",
+                "StudentTitle":"Student - Profile",
+                "RespTitle":"Administrator - Profile"
+            },
+            "courses":{
+                "cours": "Courses",
+                "createCour": "Create a course",
+                "startDate":"Start date",
+                "endDate":"End date",
+                "createcour": "Create Course",
+                "image1":"Click to upload",
+                "title":"Title",
+                "desc":"Description",
+                "create":"Create",
+                "update":"Update",
+                "delete":"Delete",
+                "affected":"Assigned Courses",
+                "affecter":"Assign",
+                "placeholder":"Search by course title",
+                "grid":"Grid",
+                "list":"List",
+                "profTitle":"Teacher - Courses",
+                "StudentTitle":"Student - Courses",
+                "RespTitle":"Administrator - Courses",
+                "changeDateFin":"Change the end date",
+                "search":"Search by course title"
+            },
+            "teachers":{
+                "teachers":"Teachers",
+                "createteacher": "Create a teacher",
+                "email":"Email Address",
+                "fname":"First Name",
+                "lname":"Last Name",
+                "pass":"Password",
+                "action":"Actions",
+                "teacher":"Teacher",
+                "affected":"Assigned courses",
+                "affecter":"Assign course",
+                "cours": "Courses",
+                "update":"Update",
+                "create":"Create",
+                "affecterr":"Assign",
+                "affectedG": "Assigned groups",
+                "affecterG": "Assign groups",
+                "placeholder":"Search by email address",
+                "grid":"Grid",
+                "list":"List",
+                "groups":"Groups"            
+            },
+            "groups":{
+                "groups":"Groups",
+                "creategroup": "Create a Group",
+                "name":"Name",
+                "email":"Email Address",
+                "fname":"First Name",
+                "lname":"Last Name",
+                "pass":"Password",
+                "create":"Create",
+                "update":"Update",
+                "delete":"Delete",
+                "affecter":"Affect",
+                "placeholder":"Search by group name",
+                "grid":"Grid",
+                "list":"List",
+                "students": "Students",
+                "createStudent": "Create student",
+                "birth":"Date of birth",
+                "phone":"Phone",
+                "profTitle":"Teacher - Groups",
+                "StudentTitle":"Student - Groups",
+                "RespTitle":"Administrator - Groups"
+            },
+            "form":{
+                "email":"Email Address",
+                "fname":"First Name",
+                "lname":"Last Name",
+                "language":"Language"
+            },
+            "buttons":{
+                "login":"Login",
+                "logout":"Sign out"
+            },
+            "login":{
+                "login":"Login",
+                "email":"Email Address",
+                "password":"Password",
+                "role":"What are you ?",
+                "student":"Student",
+                "responsable":"Responsible",
+                "professeur":"Teacher",
+                "error": "Email or password are wrong !"
+            },
+            "footer":{
+                "pages":"Pages",
+                "languages":"Languages",
+                "profile":"Profile",
+                "copyright1":"Copyright",
+                "copyright2":"Coursera. All Rights Reserved."
+            },
+            "alert":{
+                "text": "Are you sure?",
+                "yes":"Yes, I'm sure",
+                "no":"No, cancel"
+            }
+        }
+    },
+    "frensh":{
+        "title":"Francais",
+        "subTitle":"fr",
+        "data":{
+            "dashboard":{
+                "dashboard":"Tableau de bord",
+                "cours": "Cours",
+                "profs":"Professeurs",
+                "groups":"Groups",
+                "profTitle":"Professeur - Tableau de bord",
+                "StudentTitle":"Etudiant - Tableau de bord",
+                "RespTitle":"Responsable - Tableau de bord"
+            },
+            "profile":{
+                "profile":"Profil",
+                "profTitle":"Professeur - Profil",
+                "StudentTitle":"Etudiant - Profil",
+                "RespTitle":"Responsable - Profil"
+            },
+            "courses":{
+                "cours": "Cours",
+                "createCour": "Créer un cours",
+                "startDate":"Date de début",
+                "endDate":"Date de fin",
+                "createcour": "Créer un cours",
+                "image1":"Cliquez pour télécharger",
+                "title":"Titre",
+                "desc":"Description",
+                "create":"Créer",
+                "update":"Mise à jour",
+                "delete":"Supprimer",
+                "placeholder":"Recherche par titre de cours",
+                "grid":"Grille",
+                "list":"Liste",
+                "affecter":"Affecter",
+                "profTitle":"Professeur - Cours",
+                "StudentTitle":"Etudiant - Cours",
+                "RespTitle":"Responsable - Cours",
+                "changeDateFin":"Changer la date de fin",
+                "search":"Recherche par titre de cours"
+            },
+            "teachers":{
+                "teachers":"Professeurs",
+                "createteacher": "Créer un professeur",
+                "email":"Adresse e-mail",
+                "fname":"Prénom",
+                "lname":"Nom de famille",
+                "pass":"Mot de passe",
+                "action":"Actions",
+                "teacher":"Professeur",
+                "affected":"Les cours affectés",
+                "affecter":"Affecter un cour",
+                "cours": "Cours",
+                "create":"Créer",
+                "update":"Mise à jour",
+                "delete":"Supprimer",
+                "affectedG": "Groupes assignés",
+                "affecterG": "Affecter un groupe",
+                "placeholder":"Rechercher par adresse e-mail",
+                "grid":"Grille",
+                "list":"Liste",
+                "affecterr":"Affecter",
+                "groups":"Groupes",
+                "profTitle":"Professeur - Professeurs",
+                "StudentTitle":"Etudiant - Professeurs",
+                "RespTitle":"Responsable - Professeurs"
+            },
+            "groups":{
+                "groups":"Groupes",
+                "creategroup": "Créer un groupe",
+                "email":"Adresse e-mail",
+                "name":"Nom",
+                "fname":"Prénom",
+                "lname":"Nom de famille",
+                "pass":"Mot de passe",
+                "create":"Créer",
+                "update":"Mise à jour",
+                "delete":"Supprimer",
+                "placeholder":"Rechercher par nom de groupe",
+                "grid":"Grille",
+                "list":"Liste",
+                "students": "Étudiants",
+                "createStudent": "Créer un étudiant",
+                "birth":"Date naissance",
+                "phone":"Téléphone",
+                "profTitle":"Professeur - Groupes",
+                "StudentTitle":"Etudiant - Groupes",
+                "RespTitle":"Responsable - Groupes"
+            },
+            "form":{
+                "email":"Adresse e-mail",
+                "fname":"Prénom",
+                "lname":"Nom de famille",
+                "language": "langue"
+            },
+            "buttons":{
+                "login":"Connexion",
+                "logout":"Déconnecter"
+            },
+            "login":{
+                "login":"Connexion",
+                "email":"Adresse e-mail",
+                "password":"Mot de passe",
+                "role":"vous étes quoi ?",
+                "student":"Etudiant",
+                "responsable":"Responsable",
+                "professeur":"Professeur",
+                "error": "L'email ou le mot de passe sont erronés !"
+            },
+            "footer":{
+                "pages":"Pages",
+                "languages":"Langages",
+                "profile":"Profil",
+                "copyright1":"Droits d'auteur",
+                "copyright2":"Coursera. Tous droits réservés."
+            },
+            "alert":{
+                "text": "Es-tu sûr?",
+                "yes":"Oui, je suis sûr",
+                "no":"Non, annule"
+            }
+        }
+    },
+    "arabic":{
+        "title":"اللغة العربية",
+        "subTitle":"ar",
+        "data":{
+            "dashboard":{
+                "dashboard":"لوحة القيادة",
+                "cours": "الدورات",
+                "profs":"الاساتذة",
+                "groups":"المجموعات",
+                "profTitle":"المدرس - لوحة القيادة",
+                "StudentTitle":"الطالب - لوحة القيادة",
+                "RespTitle":"المسؤول - لوحة القيادة"
+            },
+            "profile":{
+                "profile":"الملف الشخصي",
+                "profTitle":"المدرس - الملف الشخصي",
+                "StudentTitle":"الطالب - الملف الشخصي",
+                "RespTitle":"المسؤول - الملف الشخصي"
+            },
+            "courses":{
+                "cours": "الدورات",
+                "createCour": "إنشاء دورة",
+                "startDate":"تاريخ البدء",
+                "endDate":"تاريخ الانتهاء",
+                "createcour": "إنشاء دورة",
+                "image1":"انقر للتحميل",
+                "title":"العنوان",
+                "desc":"الوصف",
+                "create":"إنشاء",
+                "update":"تحديث",
+                "delete":"حذف",
+                "placeholder":"البحث حسب عنوان الدورة",
+                "grid":"شبكة",
+                "list":"قائمة",
+                "affecter":"تعيين",
+                "profTitle":"المدرس - الدورات",
+                "StudentTitle":"الطالب - الدورات",
+                "RespTitle":"المسؤول - الدورات",
+                "changeDateFin":"تغيير تاريخ الانتهاء",
+                "search":"البحث حسب عنوان الدورة"
+            },
+            "teachers":{
+                "teachers":"الاساتذة",
+                "createteacher": "إنشاء مدرس",
+                "action":"إجراءات",
+                "email":"عنوان البريد الإلكتروني",
+                "fname":"الاسم الأول",
+                "lname":"اسم العائلة",
+                "pass":"كلمة المرور",
+                "create":"إنشاء",
+                "update":"تحديث",
+                "delete":"حذف",
+                "teacher":"مدرس",
+                "affected":"الدورات المعنات",
+                "affecter":"تعيين دورة",
+                "cours": "الدورات",
+                "affecterG": "تعيين مجموعة",
+                "affectedG": "المجموعات المخصصة",
+                "placeholder":"البحث عن طريق عنوان البريد الإلكتروني",
+                "grid":"شبكة",
+                "list":"قائمة",
+                "affecterr":"تعيين",
+                "groups":"المجموعات"
+            },
+            "groups":{
+                "groups":"المجموعات",
+                "creategroup": "إنشاء مجموعة",
+                "email":"عنوان البريد الإلكتروني",
+                "name":"الاسم",
+                "fname":"الاسم الأول",
+                "lname":"اسم العائلة",
+                "pass":"كلمة المرور",
+                "create":"إنشاء",
+                "update":"تحديث",
+                "delete":"حذف",
+                "placeholder":"البحث حسب اسم المجموعة",
+                "grid":"شبكة",
+                "list":"قائمة",
+                "students": "طلاب",
+                "createStudent": "إنشاء طالب",
+                "birth":"تاريخ الولادة",
+                "phone":"الهاتف",
+                "profTitle":"المدرس - المجموعات",
+                "StudentTitle":"الطالب - المجموعات",
+                "RespTitle":"المسؤول - المجموعات"
+            },
+            "form":{
+                "email":"عنوان البريد الإلكتروني",
+                "fname":"الاسم الأول",
+                "lname":"اسم العائلة",
+                "language":"اللغة"
+            },
+            "buttons":{
+                "logout":"تسجيل الخروج",
+                "login":"تسجيل الدخول"
+            },
+            "login":{
+                "login":"تسجيل الدخول",
+                "email":"عنوان البريد الإلكتروني",
+                "password":"كلمة المرور",
+                "role":"ما أنت ؟",
+                "student":"طالب",
+                "responsable":"مسؤول",
+                "professeur":"مدرس",
+                "error": "البريد الإلكتروني أو كلمة المرور خاطئة !"
+            },
+            "footer":{
+                "pages":"الصفحات",
+                "languages":"اللغات",
+                "profile":"الملف الشخصي",
+                "copyright1":"حقوق النشر",
+                "copyright2":"Coursera. كل الحقوق محفوظة."
+            },
+            "alert":{
+                "text":"هل انت متاكد؟",
+                "yes":"نعم أنا متأكد",
+                "no":"لا، إلغاء"
+            }
+        }
+    }
+}

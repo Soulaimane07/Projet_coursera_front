@@ -20,14 +20,21 @@ export const uploadsURL = "http://127.0.0.1:8000/uploads"
 /* ----------- Functions ---------------- */
 
 export const getLang = () => {
-    let langSub = JSON.parse(localStorage.getItem("CourseraLang"))
-    
+    let langJSON = localStorage.getItem("CourseraLang")
     let lang = langDoc.frensh
 
-    langSub === "en" && (lang = langDoc.english)
-    langSub === "fr" && (lang = langDoc.frensh)
-    langSub === "ar" && (lang = langDoc.arabic)
-    langSub === undefined && (lang = langDoc.frensh)
+    if(langJSON === "undefined" || langJSON === undefined){
+        lang = langDoc.frensh
+    } else {
+        let langSub = JSON.parse(langJSON)
+        lang = langDoc.frensh
+    
+        langSub === "en" && (lang = langDoc.english)
+        langSub === "fr" && (lang = langDoc.frensh)
+        langSub === "ar" && (lang = langDoc.arabic)
+    }
+    
+    // langSub === undefined && (lang = langDoc.frensh)
 
     return lang
 }

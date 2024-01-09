@@ -39,7 +39,12 @@
                 "StudentTitle":"Student - Courses",
                 "RespTitle":"Administrator - Courses",
                 "changeDateFin":"Change the end date",
-                "search":"Search by course title"
+                "search":"Search by course title",
+                "error": "Not created !",
+                "errorU": "Not updated !",
+                "module": "Module",
+                "cDate": "Control date",
+                "link": "Link"
             },
             "teachers":{
                 "teachers":"Teachers",
@@ -159,7 +164,12 @@
                 "StudentTitle":"Etudiant - Cours",
                 "RespTitle":"Responsable - Cours",
                 "changeDateFin":"Changer la date de fin",
-                "search":"Recherche par titre de cours"
+                "search":"Recherche par titre de cours",
+                "error": "Non créé !",
+                "errorU": "Non mis à jour !",
+                "module": "Module",
+                "cDate": "Date de control",
+                "link": "Lien"
             },
             "teachers":{
                 "teachers":"Professeurs",
@@ -282,7 +292,12 @@
                 "StudentTitle":"الطالب - الدورات",
                 "RespTitle":"المسؤول - الدورات",
                 "changeDateFin":"تغيير تاريخ الانتهاء",
-                "search":"البحث حسب عنوان الدورة"
+                "search":"البحث حسب عنوان الدورة",
+                "error": "لم يتم إنشاء  !",
+                "errorU": "لم يتم تحديث  !",
+                "module": "وحدة",
+                "cDate": "تاريخ الاختبار",
+                "link": "رابط"
             },
             "teachers":{
                 "teachers":"الاساتذة",

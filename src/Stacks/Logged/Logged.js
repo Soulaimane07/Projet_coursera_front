@@ -2,9 +2,10 @@ import React from 'react'
 import Respo from './Respo';
 import Student from './Student';
 import Teacher from './Teacher';
+import { getUserData } from '../../Components/Functions';
 
 function Logged() {
-    let role = "responsible"
+    let role = getUserData()?.role
     
     const Platform = () => {
         switch (role) {

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { getLang, logo } from '../../Components/variables'
 import LanguageBox from '../../Layouts/LanguageBox'
 import Button from '../../Components/Button'
-import { PostData } from '../../Components/Functions'
+import { LoginFun, LoginFunEtud, LoginFunProf, PostData } from '../../Components/Functions'
 
 function Login() {
     let language = getLang()?.data
@@ -12,6 +12,11 @@ function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [message, setMessage] = useState(null)
+
+    let fun 
+    role === "0" && (fun = LoginFun)
+    role === "1" && (fun = LoginFunEtud)
+    role === "2" && (fun = LoginFunProf)
 
   return (
     <div className={`flex  h-screen w-full overflow-hidden `}>
@@ -41,7 +46,7 @@ function Login() {
                     <input className='border-2 w-full rounded-md border-gray-200 hover:border-gray-300 transition-all focus:border-blue-600 outline-none px-4 py-2' onChange={(e)=> setPassword(e.target.value)} type="password" name="floating_password" id="floating_password"  required />
                 </div>
 
-                <Button text={language.login.login} data={{email, password}} fun={PostData} message={setMessage} condition={email === "" || password === "" || role === ""} />
+                <Button text={language.login.login} data={{email, password}} fun={fun} message={setMessage} condition={email === "" || password === "" || role === ""} />
                 <LanguageBox />
             </div>
         </div>

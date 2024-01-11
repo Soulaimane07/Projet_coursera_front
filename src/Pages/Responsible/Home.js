@@ -12,9 +12,9 @@ function Home() {
 
   let courses = GetData("/cours/index")
   let profs = GetData("/prof/showAll")
-  let groupes = GetData("/groupe/index")
+  let groupes = GetData("/etudiant/index")
 
-  const cards =[
+  const cards = [
     {
       "logo": "./assets/images/cours.png", 
       "title": lang?.dashboard.cours,
@@ -29,9 +29,9 @@ function Home() {
     },
     {
       "logo": "./assets/images/student.png", 
-      "title": lang?.dashboard.groups,
+      "title": lang?.dashboard.student,
       "total": groupes?.length || 0,
-      "link":"/groupes"
+      "link":"/students"
     }
   ]
 

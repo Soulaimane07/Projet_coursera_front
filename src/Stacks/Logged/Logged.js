@@ -11,7 +11,7 @@ function Logged() {
         switch (role) {
           case "responsible":
             return <Respo />
-          case "student":
+          case "etudiant":
             return <Student />
           case "teacher":
             return <Teacher />

@@ -6,7 +6,7 @@ import { getLang } from '../../Components/variables'
 import Home from '../../Pages/Responsible/Home'
 import Footer from '../../Layouts/Footer'
 import Teachers from '../../Pages/Responsible/Teachers'
-import Groupes from '../../Pages/Responsible/Groupes'
+import Students from '../../Pages/Responsible/Students'
 
 function Respo() {
   let lang = getLang()?.data.dashboard
@@ -21,8 +21,8 @@ function Respo() {
         "link":"/teachers"
     },
     {
-      "title": lang?.groups,
-      "link":"/groupes"
+      "title": lang?.student,
+      "link":"/students"
     }
   ]
 
@@ -34,14 +34,11 @@ function Respo() {
           <Route path='/' element={<Home />} />
           <Route path='/courses' element={<Courses />} />
           <Route path='/teachers' element={<Teachers />} />
-          <Route path='/groupes' element={<Groupes />} />
-          {/*<Route path='/profile' element={<Profile pageTitle={"Admin - Profile"} />} />
-          <Route path='/*' element={<Something />} /> */}
+          <Route path='/students' element={<Students />} />
         </Routes>
       </div>
       <Footer pages={pages} />
     </>
-
   )
 }
 

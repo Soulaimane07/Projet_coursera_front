@@ -13,3 +13,4 @@ export const CourseCard = () => {
         </div>
     )
 }
+

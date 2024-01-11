@@ -4,17 +4,19 @@ import { getLang } from "../Components/variables"
 import { FiLink } from "react-icons/fi";
 import { DeleteData, GetData, getUserData } from "../Components/Functions";
 import Button from "../Components/Button";
+import { ProfCourse } from "../Components/Courses";
 
-export const CourDetails = ({course, close, setUpdate}) => {
+
+export const CourDetails = ({course, close, setUpdate, setSubmit}) => {
     let lang = getLang()?.data.courses
     let userRole = getUserData()?.role
 
     const Buttons = () => {
         let result
 
-        if(userRole === "student"){
-            result = (<>44</>
-            // <SubmitButton text={"Submit"} fun={()=> setSubmitCour(course)} link={null} bgColor={PrimaryColor} color={"white"} />
+        if(userRole === "etudiant"){
+            result = (
+                <Button text={'Submit'} fun={()=> setSubmit(course)} />
             )
         }
         if(userRole === "responsible"){
@@ -99,48 +101,61 @@ export const CourDetails = ({course, close, setUpdate}) => {
 }
 
 
-export const TeacherDetails = ({teacher, setDetailsProf}) => {
+export const TeacherDetails = ({teacher, setDetailsProf, setAffect}) => {
     let lang = getLang()?.data.teachers
-    const [type, setType] = useState(1)
+    
+    let annees = GetData('/annee/getAnnees');
+    let filieres = GetData('/filiere/getFilieres');
+    
+    const [filiere, setFiliere] = useState(0)
+    let groupes = GetData(`/groupe/${teacher?.id}/${filiere}/getGroupesEnseignesPourFiliere`, filiere);
 
-    console.log(GetData(`/prof/${teacher?.id}/modules`));
+    const [groupe, setGroupe] = useState(0)
+    let cours = GetData(`/cours/${teacher?.id}/${groupe}/getCoursEnseignesPourGroupe`, groupe)
 
     return (
         <div className="fixed z-20 top-0 left-0 right-0 h-screen bg-gray-800 bg-opacity-40 w-full flex justify-center py-10">
-            <div className=" rounded-md bg-white shadow-2xl w-full md:1/2 lg:w-2/5 mx-10 md:mx-20  lg:mx-0 flex flex-col pb-6">
-                <div className="flex flex-col justify-between pb-6 h-full ">
-                    <div className="overflow-y-scroll">
-                        <div className="relative text-center py-4 font-medium text-xl border-b-2 border-gray-500">
-                            <h2>
-                                {teacher?.email}
-                            </h2>
-                            <CloseBtn close={setDetailsProf} />
-                        </div>
-                        
-                        <div className="px-10 mt-6 flex-1">
-                            <div className="flex space-x-2">
-                                <button onClick={()=> setType(1)} className={`${type === 1 ? " bg-blue-500 text-white " : "bg-blue-100 hover:bg-blue-100 hover:text-blue-600 text-gray-600"} w-full rounded-md py-3`}>
-                                    {lang?.cours} ( {teacher?.cours?.length} )
-                                </button>
-                                <button onClick={()=> setType(0)} className={`${type === 0 ? " bg-blue-500 text-white " : "bg-blue-100 hover:bg-blue-100 hover:text-blue-600 text-gray-600"} w-full rounded-md py-3`}>
-                                    {lang?.groups} ( {teacher?.groupes?.length} )
-                                </button>
-                            </div>
+            <div className=" rounded-md bg-white shadow-2xl w-full md:1/2 lg:w-2/3 mx-10 md:mx-20  lg:mx-0 flex flex-col pb-6 overflow-hidden ">
+                <div className="relative text-center py-4 font-medium text-xl border-b-2 border-gray-500">
+                    <h2> {teacher?.email} </h2>
+                    <CloseBtn close={setDetailsProf} />
+                </div>
+                <div className="flex-1 overflow-y-scroll">
+                    <div className="px-10 pb-2 mt-6">
+                    <div className="flex  space-x-4">
+                        <select className="bg-blue-100 rounded-md p-2 w-full">
+                            <option>Annees</option>
+                            {annees?.map((item,key)=>(
+                                <option value={item.id} key={key}> {item.nom} </option>
+                            ))}
+                        </select>
 
-                            <div className="mb-6">
-                                {/* {type === 0 && <GroupesList data={teacher?.groupes} lang={lang} setDeleteBtn={setDeleteGroup} />}
-                                {type === 1 && <CoursList data={teacher?.cours} lang={lang} setDeleteBtn={setDeleteCour} />} */}
-                            </div>
-                        </div>
+                        <select onChange={(e)=> setFiliere(e.target.value)} className="bg-blue-100 rounded-md p-2 w-full">
+                            <option value={0}>Filieres</option>
+                            {filieres?.map((item,key)=>(
+                                <option value={item.id} key={key}> {item.nom} </option>
+                            ))}
+                        </select>
+
+                        <select onChange={(e)=> setGroupe(e.target.value)} className="bg-blue-100 rounded-md p-2 w-full">
+                            <option value={0}>Groupes</option>
+                            {groupes?.map((item,key)=>(
+                                <option value={item.id} key={key}> {item.nom} </option>
+                            ))}
+                        </select>
                     </div>
 
-                    {/* {deleteCour && <Alert noFun={()=> setDeleteCour(false)} yesFun={()=> PostData({'cour_id': deleteCour}, spinner, null, null, `/prof/${teacher?.id}/removeCours`)} />}
-                    {deleteGroup && <Alert noFun={()=> setDeleteGroup(false)} yesFun={()=> DeleteData(null, spinner, null, null, `/group/${deleteGroup}/${teacher?.id}/removeprof`)} />} */}
-
-
-                    <div className="flex space-x-4 px-10">
-                        <Button text={lang?.affecterr}  link={`/prof/destroy/${teacher?.id}`} />
+                    <div className="mt-6 mb-6">
+                        <h1> Cours ( {cours?.length} ) </h1>
+                        {cours?.map((item,key)=>(
+                            <ProfCourse item={item} key={key} />
+                        ))}
                     </div>
+                    </div>
+                </div>
+
+                <div className="flex space-x-4 px-10 pt-4">
+                    <Button text={lang?.affecterr} fun={()=> setAffect(teacher.id)}  link={`/prof/destroy/${teacher?.id}`} condition={filiere === "" || groupe === ""} />
                 </div>
             </div>
         </div>

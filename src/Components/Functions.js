@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 export const PageTitle = (title) => {
     useEffect(() => {
         document.title = title;
-    }, []);
+    }, [title]);
 }
 
 export const GetToTop = () => {
@@ -97,6 +97,31 @@ export const UpdateData = (spinner, message, data, navigate, link) => {
         })
 }
 
+export const PostExcel = (spinner, message, data, navigate, link) => {
+    spinner(true)
+    message(null)
+    console.log(data);
+    console.log(link);
+
+    axios.post(`${serverURL}${link}`, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "x-rapidapi-host": "file-upload8.p.rapidapi.com",
+          "x-rapidapi-key": "your-rapidapi-key-here",
+        },
+      })
+        .then(res => {
+            spinner(false)
+            console.log(res.data);
+            window.location.reload()
+        })
+        .catch(err => {
+            spinner(false)
+            console.log(err);
+            message(getLang()?.data.courses.error)
+        })
+}
+
 
 
 /* ------------  Auth  ------------ */
@@ -129,7 +154,7 @@ export const LoginFun = (spinner, message, data, navigate) => {
         })
 }
 
-export const LoginFunEtud = (data, spinner, navigate, message) => {
+export const LoginFunEtud = (spinner, message, data, navigate) => {
     spinner(true)
     message(false)
 
@@ -173,3 +198,9 @@ export const LoginFunProf = (data, spinner, navigate, message) => {
         })
 }
 
+export const Logout = (setSpinner, message, data, navigate, link) => {
+    setSpinner(true)
+    localStorage.removeItem('CourseraUser')
+    navigate('/')
+    window.location.reload()
+}

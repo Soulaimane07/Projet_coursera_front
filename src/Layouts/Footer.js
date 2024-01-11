@@ -15,7 +15,7 @@ function Footer({pages}) {
     <div className={`text-white py-10 bg-blue-700 ${langSub === "ar" ? ' text-right' : 'text-left'} mt-10`}>
         <div className='px-10 md:px-20 lg:px-32 space-y-10 md:space-y-0 py-14 flex flex-wrap justify-between'>
           <div className='w-full md:w-1/2 md:mb-10 lg:w-1/3'>
-            <img src={logoWhite} className='w-40 mb-4' />
+            <img src={logoWhite} className='w-40 mb-4' alt='logoImg' />
             <p className='w-full pr-10 opacity-60'> 
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
                 Lorem Ipsum has been the industry's standard.
@@ -33,8 +33,6 @@ function Footer({pages}) {
               {pages?.map((item,key)=>(
                 <Link key={key} to={item.link} className='opacity-60 hover:opacity-100'> {item.title} </Link>
               ))}
-
-              <Link to='/profile' className='opacity-60 hover:opacity-100'> {lang?.profile} </Link>
             </ul>
           </div>
           

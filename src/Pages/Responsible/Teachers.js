@@ -10,6 +10,7 @@ import { BiDetail } from "react-icons/bi";
 import { TeacherCreate } from '../../Layouts/Create'
 import { TeacherDetails } from '../../Layouts/Details'
 import { TeacherUpdate } from '../../Layouts/Update'
+import { AffectToProf } from '../../Layouts/Affect'
 
 
 function Teachers() {
@@ -24,6 +25,7 @@ function Teachers() {
   const [createBtn, setCreateBtn] = useState(false)
   const [detailsProf, setDetailsProf] = useState(false)
   const [updateProf, setUpdateProf] = useState(false)
+  const [affect, setAffect] = useState(false)
 
   let spinner = () => {}
 
@@ -42,12 +44,6 @@ function Teachers() {
                     </th>
                     <th scope="col" className="px-6 py-3">
                         {lang?.lname}
-                    </th>
-                    <th scope="col" className="pr-12 py-3 text-center">
-                        {lang?.cours}
-                    </th>
-                    <th scope="col" className="pr-12 py-3 text-center">
-                        {lang?.groups}
                     </th>
                     <th scope="col" className="px-6 py-3">
                         {lang?.action}
@@ -69,12 +65,6 @@ function Teachers() {
                                 <td className="px-6 py-4">
                                     {item?.nom}
                                 </td>
-                                <td className="pr-12 py-4 text-center">
-                                    {item?.cours?.length}
-                                </td>
-                                <td className="pr-12 py-4 text-center">
-                                    {item?.groupes?.length}
-                                </td>
                                 <td className="">
                                     <button onClick={()=> setDetailsProf(item)} className='px-2 opacity-70 hover:opacity-100 transition-all'>
                                         <BiDetail size={20} />
@@ -94,8 +84,9 @@ function Teachers() {
         </table>
 
         {createBtn && <TeacherCreate setCreateBtn={setCreateBtn} />}
-        {detailsProf && <TeacherDetails teacher={detailsProf} setDetailsProf={setDetailsProf} />}
+        {detailsProf && <TeacherDetails teacher={detailsProf} setDetailsProf={setDetailsProf} setAffect={setAffect} />}
         {updateProf && <TeacherUpdate teacher={updateProf} setUpdateProf={setUpdateProf} />}
+        {affect && <AffectToProf teacherId={affect} setDetailsProf={setAffect} />}
     </div>
   )
 }

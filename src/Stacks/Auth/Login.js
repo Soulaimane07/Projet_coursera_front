@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { getLang, logo } from '../../Components/variables'
 import LanguageBox from '../../Layouts/LanguageBox'
 import Button from '../../Components/Button'
-import { LoginFun, LoginFunEtud, LoginFunProf, PostData } from '../../Components/Functions'
+import { LoginFun, LoginFunEtud, LoginFunProf } from '../../Components/Functions'
 
 function Login() {
     let language = getLang()?.data

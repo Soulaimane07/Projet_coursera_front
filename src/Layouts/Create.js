@@ -2,6 +2,7 @@ import { useState } from "react"
 import { getLang } from "../Components/variables"
 import Button from "../Components/Button"
 import CloseBtn from "../Components/CloseBtn"
+import BackBtn from "../Components/BackBtn"
 import { GetData, PostData, PostExcel } from "../Components/Functions"
 
 export const CourCreate = ({setCreateBtn}) => {
@@ -224,6 +225,130 @@ export const StudentCreate = ({setCreateBtn}) => {
 
                 <div className="flex space-x-4 px-10">
                     <Button link={type === 0 ? "/etudiant/create" : "/simple-excel/importEtudiant"} data={student} message={setMessage} fun={type === 0 ? PostData : PostExcel} text={lang.create} condition={type === 0 ? (email === "" || fname === "" || lname === "" || pass === "") :  !file} />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export const FiliereCreate = ({setCreateBtn}) => {
+    let lang = getLang()?.data.teachers
+    
+    const [nom, setNom] = useState("")
+    
+    let data = {nom}
+    const [message, setMessage] = useState(null)
+
+
+    return (
+        <div className="fixed z-20 top-0 left-0 right-0 h-screen bg-gray-800 bg-opacity-40 w-full flex justify-center py-10">
+            <div className=" rounded-md bg-white shadow-2xl w-full md:1/2 lg:w-2/6 mx-10 md:mx-20  lg:mx-0 flex flex-col pb-6 overflow-hidden ">
+                <div className="relative text-center py-4 font-medium text-xl border-b-2 border-gray-500">
+                    <h2> Creer une filiere </h2>
+                    <CloseBtn close={setCreateBtn} />
+                </div>
+                {message && <div className='text-red-600 w-full text-center font-medium mt-3 mb-3'> {message} </div>}
+                <div className="flex-1 px-10 pb-2 mt-6">
+                    <div className="mb-6 flex flex-col">
+                        <label className="mb-1"> Nom </label>
+                        <input onChange={(e)=> setNom(e.target.value)} type="text" className="border-2 rounded-md border-gray-300 outline-none px-3 py-1" />
+                    </div>
+                </div>
+
+                <div className="flex space-x-4 px-10">
+                    <Button link="/filiere/ajouterFiliere" data={data} message={setMessage} fun={PostData} text={lang.create} condition={nom === ""} />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export const CreateModule = ({setCreateBtn}) => {
+    let lang = getLang()?.data.teachers
+    let filieres = GetData('/filiere/getFilieres');
+    
+
+    const [nom, setNom] = useState("")
+    const [filiere, setFiliere] = useState("")
+    
+    let data = {nom, filiere_id: filiere}
+    const [message, setMessage] = useState(null)
+
+    return (
+        <div className="fixed z-20 top-0 left-0 right-0 h-screen bg-opacity-40 w-full flex justify-center py-10">
+            <div className=" rounded-md bg-white shadow-2xl w-full md:1/2 lg:w-2/6 mx-10 md:mx-20  lg:mx-0 flex flex-col pb-6 overflow-hidden ">
+                <div className="relative text-center py-4 font-medium text-xl border-b-2 border-gray-500">
+                    <h2> Creer un module </h2>
+                    <BackBtn back={setCreateBtn} />
+                </div>
+                {message && <div className='text-red-600 w-full text-center font-medium mt-3 mb-3'> {message} </div>}
+                <div className="flex-1 px-10 pb-2 mt-6">
+                    <div className="mb-6 flex flex-col">
+                        <label className="mb-1"> Nom </label>
+                        <input onChange={(e)=> setNom(e.target.value)} type="text" className="border-2 rounded-md border-gray-300 outline-none px-3 py-1" />
+                    </div>
+
+                    <div className="mb-6 flex flex-col">
+                        <label className="mb-1"> Filiere </label>
+                        <select onChange={(e)=> setFiliere(e.target.value)} className="flex-1 w-full border-2 rounded-md border-gray-300 outline-none px-3 py-1">
+                            <option value={0} > Filiere </option>
+                            {filieres?.map((item,key)=>(
+                                <option value={item.id} key={key}>
+                                    {item.nom}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
+
+                <div className="flex space-x-4 px-10">
+                    <Button link="/module/ajouterModule" data={data} message={setMessage} fun={PostData} text={lang.create} condition={nom === ""} />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export const CreateGroupe = ({setCreateBtn}) => {
+    let lang = getLang()?.data.teachers
+    let filieres = GetData('/filiere/getFilieres');
+    
+
+    const [nom, setNom] = useState("")
+    const [filiere, setFiliere] = useState("")
+    
+    let data = {nom, filiere_id: filiere}
+    const [message, setMessage] = useState(null)
+
+    return (
+        <div className="fixed z-20 top-0 left-0 right-0 h-screen bg-opacity-40 w-full flex justify-center py-10">
+            <div className=" rounded-md bg-white shadow-2xl w-full md:1/2 lg:w-2/6 mx-10 md:mx-20  lg:mx-0 flex flex-col pb-6 overflow-hidden ">
+                <div className="relative text-center py-4 font-medium text-xl border-b-2 border-gray-500">
+                    <h2> Creer un groupe </h2>
+                    <BackBtn back={setCreateBtn} />
+                </div>
+                {message && <div className='text-red-600 w-full text-center font-medium mt-3 mb-3'> {message} </div>}
+                <div className="flex-1 px-10 pb-2 mt-6">
+                    <div className="mb-6 flex flex-col">
+                        <label className="mb-1"> Nom </label>
+                        <input onChange={(e)=> setNom(e.target.value)} type="text" className="border-2 rounded-md border-gray-300 outline-none px-3 py-1" />
+                    </div>
+
+                    <div className="mb-6 flex flex-col">
+                        <label className="mb-1"> Filiere </label>
+                        <select onChange={(e)=> setFiliere(e.target.value)} className="flex-1 w-full border-2 rounded-md border-gray-300 outline-none px-3 py-1">
+                            <option value={0} > Filiere </option>
+                            {filieres?.map((item,key)=>(
+                                <option value={item.id} key={key}>
+                                    {item.nom}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
+
+                <div className="flex space-x-4 px-10">
+                    <Button link="/groupe/create" data={data} message={setMessage} fun={PostData} text={lang.create} condition={nom === ""} />
                 </div>
             </div>
         </div>

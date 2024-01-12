@@ -7,6 +7,7 @@ import Home from '../../Pages/Responsible/Home'
 import Footer from '../../Layouts/Footer'
 import Teachers from '../../Pages/Responsible/Teachers'
 import Students from '../../Pages/Responsible/Students'
+import Filiere from '../../Pages/Responsible/Filiere'
 
 function Respo() {
   let lang = getLang()?.data.dashboard
@@ -23,6 +24,10 @@ function Respo() {
     {
       "title": lang?.student,
       "link":"/students"
+    },
+    {
+      "title": "Filieres",
+      "link":"/filieres"
     }
   ]
 
@@ -35,6 +40,7 @@ function Respo() {
           <Route path='/courses' element={<Courses />} />
           <Route path='/teachers' element={<Teachers />} />
           <Route path='/students' element={<Students />} />
+          <Route path='/filieres' element={<Filiere />} />
         </Routes>
       </div>
       <Footer pages={pages} />

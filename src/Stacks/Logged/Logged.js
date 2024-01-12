@@ -13,7 +13,7 @@ function Logged() {
             return <Respo />
           case "etudiant":
             return <Student />
-          case "teacher":
+          case "prof":
             return <Teacher />
           default:
             return <Respo />

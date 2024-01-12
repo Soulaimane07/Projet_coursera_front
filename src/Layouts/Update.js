@@ -47,11 +47,11 @@ export const CourUpdate = ({course, close}) => {
                         </div>
                         <div className="mb-6 flex flex-col">
                             <label className="mb-1"> {lang?.startDate} </label>
-                            <input value={dateL} onChange={(e)=> setdateF(e.target.value)} type="date" className="border-2 rounded-md border-gray-300 outline-none px-3 py-1" />
+                            <input value={dateL} onChange={(e)=> setdateL(e.target.value)} type="date" className="border-2 rounded-md border-gray-300 outline-none px-3 py-1" />
                         </div>
                         <div className="mb-6 flex flex-col">
                             <label className="mb-1"> {lang?.endDate} </label>
-                            <input value={dateF} onChange={(e)=> setdateL(e.target.value)} type="date" className="border-2 rounded-md border-gray-300 outline-none px-3 py-1" />
+                            <input value={dateF} onChange={(e)=> setdateF(e.target.value)} type="date" className="border-2 rounded-md border-gray-300 outline-none px-3 py-1" />
                         </div>
                         <div className="mb-6 flex flex-col">
                             <label className="mb-1"> {lang.cDate} </label>
@@ -119,6 +119,38 @@ export const TeacherUpdate = ({teacher, setUpdateProf}) => {
                 
                 <div className="flex space-x-4 px-10">
                     <Button link={`/prof/update/${teacher?.id}`} message={setMessage} data={data} fun={UpdateData} text={lang?.update} condition={email === "" || fname === "" || lname === "" || pass === ""} />
+                </div> 
+            </div>
+        </div>
+    )
+}
+
+export const DateFinUpdate = ({cours, setUpdate}) => {
+    let lang = getLang()?.data.courses
+
+    const [dateF, setDateF] = useState(cours?.dateFin)
+    let data = {titre: cours?.titre, lien: cours?.lien, desc: cours?.desc, dateDebut: cours?.dateDebut, dateFin: dateF, deadline_control: cours?.deadline_control, module_id: cours?.module_id}
+    const [message, setMessage] = useState(null)
+
+    return (
+        <div className="fixed z-20 top-0 left-0 right-0 h-screen bg-opacity-40 w-full flex justify-center py-10">
+            <div className="rounded-md bg-white shadow-2xl w-full md:1/2 lg:w-2/6 mx-10 md:mx-20  lg:mx-0 flex flex-col pb-6">
+                <div className="flex-1">
+                    <div className=" relative text-center py-4 font-medium text-xl border-b-2 border-gray-500">
+                        <h2>{lang.changeDateFin}</h2>
+                        <BackBtn back={setUpdate} />
+                    </div>
+                    {message && <div className='text-red-600 w-full text-center font-medium mt-3 mb-3'> {message} </div>}
+                    <div className="px-10 pb-2 mt-6">
+                         <div className="mb-6 flex flex-col">
+                            <label className="mb-1"> {lang?.dateF} </label>
+                            <input value={dateF} onChange={(e)=> setDateF(e.target.value)} type="date" className="border-2 rounded-md border-gray-300 outline-none px-3 py-1" />
+                        </div>
+                    </div>
+                </div>
+                
+                <div className="flex space-x-4 px-10">
+                    <Button link={`/cours/update/${cours?.id}`} message={setMessage} data={data} fun={UpdateData} text={lang?.update} condition={dateF === ""} />
                 </div> 
             </div>
         </div>

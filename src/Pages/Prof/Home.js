@@ -1,7 +1,7 @@
 import React from 'react'
-import { getLang } from '../../Components/variables'
-import { GetData, GetToTop, PageTitle } from '../../Components/Functions'
 import Header from '../../Layouts/Header'
+import { getLang } from '../../Components/variables'
+import { GetToTop, PageTitle } from '../../Components/Functions'
 import { Card } from '../../Layouts/Boxs'
 
 function Home() {
@@ -10,14 +10,18 @@ function Home() {
     GetToTop()
     PageTitle(lang.dashboard.dashboard)
   
-    let courses = GetData("/cours/index")
-  
     const cards = [
       {
         "logo": "./assets/images/cours.png", 
         "title": lang?.dashboard.cours,
         "total": 0,
         "link":"/courses"
+      },
+      {
+        "logo": "./assets/images/student.png", 
+        "title": lang?.dashboard.student,
+        "total": 0,
+        "link":"/students"
       }
     ]
   

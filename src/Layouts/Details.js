@@ -27,11 +27,9 @@ export const CourDetails = ({course, close, setUpdate, setSubmit}) => {
                 </>
             )
         }
-        if(userRole === "teacher"){
+        if(userRole === "prof"){
             result = (
-                <>55
-                    {/* <SubmitButton text={lang?.changeDateFin} fun={()=> setUpdate(course)} bgColor={PrimaryColor} color={"white"} /> */}
-                </>
+                <Button text={lang.changeDateFin} fun={()=> setSubmit(course)} />
             )
         }
         
@@ -68,7 +66,7 @@ export const CourDetails = ({course, close, setUpdate, setSubmit}) => {
                                 </div> 
                                 <div className="mb-6">
                                     <label className="text-lg font-medium"> {lang.module} </label>
-                                    <h1> {GetData(`/module/getModule/${ course?.module_id}`)?.nom} </h1>
+                                    <h1> {GetData(`/module/getModule/${course?.module_id}`)?.nom} </h1>
                                 </div> 
                                 <div className="mb-6">
                                     <label className="text-lg font-medium"> {lang.desc} </label>
@@ -112,6 +110,11 @@ export const TeacherDetails = ({teacher, setDetailsProf, setAffect}) => {
 
     const [groupe, setGroupe] = useState(0)
     let cours = GetData(`/cours/${teacher?.id}/${groupe}/getCoursEnseignesPourGroupe`, groupe)
+    console.log(cours);
+
+
+    const [type, setType] = useState(0)
+    let groupess =  GetData(`/filiere/${filiere}/groupes`, filiere)
 
     return (
         <div className="fixed z-20 top-0 left-0 right-0 h-screen bg-gray-800 bg-opacity-40 w-full flex justify-center py-10">
@@ -120,42 +123,116 @@ export const TeacherDetails = ({teacher, setDetailsProf, setAffect}) => {
                     <h2> {teacher?.email} </h2>
                     <CloseBtn close={setDetailsProf} />
                 </div>
-                <div className="flex-1 overflow-y-scroll">
-                    <div className="px-10 pb-2 mt-6">
-                    <div className="flex  space-x-4">
-                        <select className="bg-blue-100 rounded-md p-2 w-full">
-                            <option>Annees</option>
-                            {annees?.map((item,key)=>(
-                                <option value={item.id} key={key}> {item.nom} </option>
-                            ))}
-                        </select>
-
-                        <select onChange={(e)=> setFiliere(e.target.value)} className="bg-blue-100 rounded-md p-2 w-full">
-                            <option value={0}>Filieres</option>
-                            {filieres?.map((item,key)=>(
-                                <option value={item.id} key={key}> {item.nom} </option>
-                            ))}
-                        </select>
-
-                        <select onChange={(e)=> setGroupe(e.target.value)} className="bg-blue-100 rounded-md p-2 w-full">
-                            <option value={0}>Groupes</option>
-                            {groupes?.map((item,key)=>(
-                                <option value={item.id} key={key}> {item.nom} </option>
-                            ))}
-                        </select>
+                <div className="flex-1 overflow-y-scroll px-10 pb-2 pt-6">
+                    <div className="flex justify-between space-x-2 mb-6 ">
+                        <button onClick={()=> setType(0)} className={`${type === 0 ? ' bg-blue-600' : 'bg-blue-300'} transition-all text-white w-full rounded-md py-2 hover:bg-opacity-80`}> Cours  </button>
+                        <button onClick={()=> setType(1)} className={`${type === 1 ? ' bg-blue-600' : 'bg-blue-300'} transition-all text-white w-full rounded-md py-2 hover:bg-opacity-80`}> Groupes  </button>
                     </div>
 
-                    <div className="mt-6 mb-6">
-                        <h1> Cours ( {cours?.length} ) </h1>
-                        {cours?.map((item,key)=>(
-                            <ProfCourse item={item} key={key} />
-                        ))}
-                    </div>
-                    </div>
+                    {type === 0 &&
+                        <div className="">
+                        <div className="flex  space-x-4">
+                            <select className="bg-blue-100 rounded-md p-2 w-full">
+                                <option>Annees</option>
+                                {annees?.map((item,key)=>(
+                                    <option value={item.id} key={key}> {item.nom} </option>
+                                ))}
+                            </select>
+
+                            <select onChange={(e)=> setFiliere(e.target.value)} className="bg-blue-100 rounded-md p-2 w-full">
+                                <option value={0}>Filieres</option>
+                                {filieres?.map((item,key)=>(
+                                    <option value={item.id} key={key}> {item.nom} </option>
+                                ))}
+                            </select>
+
+                            <select onChange={(e)=> setGroupe(e.target.value)} className="bg-blue-100 rounded-md p-2 w-full">
+                                <option value={0}>Groupes</option>
+                                {groupes?.map((item,key)=>(
+                                    <option value={item.id} key={key}> {item.nom} </option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div className="mt-6 mb-6">
+                            <h1 className="font-medium mb-2"> Cours ( {cours?.length} ) </h1>
+                            {cours?.map((item,key)=>(
+                                <ProfCourse item={item} key={key} />
+                            ))}
+                        </div>
+                        </div>
+                    }
+
+                    {type === 1 &&
+                        <div>
+                            <select onChange={(e)=> setFiliere(e.target.value)} className="bg-blue-100 rounded-md p-2 w-full">
+                                <option value={0}>Filieres</option>
+                                {filieres?.map((item,key)=>(
+                                    <option value={item.id} key={key}> {item.nom} </option>
+                                ))}
+                            </select>
+
+                            <div className="mt-4">
+                                {groupess?.map((item,key)=>(
+                                    <div className={`${item?.id === groupe ? "bg-blue-600 text-white" : "bg-blue-100"} px-10 py-6 rounded-md w-full text-left transition-all hover:shadow-md`} key={key}>
+                                        {item.nom}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    }
                 </div>
 
                 <div className="flex space-x-4 px-10 pt-4">
                     <Button text={lang?.affecterr} fun={()=> setAffect(teacher.id)}  link={`/prof/destroy/${teacher?.id}`} condition={filiere === "" || groupe === ""} />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+
+export const FiliereDetails = ({filiere, setDetails, setAffect, setCreateModule, setCreateGroupe}) => {
+    let lang = getLang()?.data.teachers
+    let modules = GetData(`/module/${filiere?.id}/getmodulesParFiliere`);
+    let groupes = GetData(`/filiere/${filiere?.id}/groupes`)
+
+    const [type, setType] = useState(0)
+
+    return (
+        <div className="fixed z-20 top-0 left-0 right-0 h-screen bg-gray-800 bg-opacity-40 w-full flex justify-center py-10">
+            <div className=" rounded-md bg-white shadow-2xl w-full md:1/2 lg:w-2/6 mx-10 md:mx-20  lg:mx-0 flex flex-col pb-6 overflow-hidden ">
+                <div className="relative text-center py-4 font-medium text-xl border-b-2 border-gray-500">
+                    <h2> {filiere?.nom} </h2>
+                    <CloseBtn close={setDetails} />
+                </div>
+                <div className="flex-1 overflow-y-scroll px-8 pt-6">
+                    <div className="flex justify-between space-x-2 mb-6">
+                        <button onClick={()=> setType(0)} className={`${type === 0 ? ' bg-blue-600' : 'bg-blue-300'} transition-all text-white w-full rounded-md py-2 hover:bg-opacity-80`}> Modules ( {modules?.length || 0} ) </button>
+                        <button onClick={()=> setType(1)} className={`${type === 1 ? ' bg-blue-600' : 'bg-blue-300'} transition-all text-white w-full rounded-md py-2 hover:bg-opacity-80`}> Groupes ( {groupes?.length || 0} ) </button>
+                    </div>
+                    {type === 0 &&
+                        <div>
+                            {modules?.map((item,key)=>(
+                                <div key={key} className="bg-blue-100 px-6 rounded-md py-6 mb-2">
+                                    {item.nom}
+                                </div>
+                            ))}
+                        </div>
+                    }
+                    {type === 1 &&
+                        <div>
+                            {groupes?.map((item,key)=>(
+                                <button onClick={()=> setAffect(item)} key={key} className="w-full text-left hover:bg-blue-600 hover:text-white transition-all bg-blue-100 px-6 rounded-md py-6 mb-2">
+                                    {item.nom}
+                                </button>
+                            ))}
+                        </div>
+                    }
+                </div>
+
+                <div className="flex space-x-4 px-10 pt-4">
+                    <Button text={type === 0 ? "Creer module" : "Creer Groupe"} fun={()=> type === 0 ? setCreateModule(filiere) : setCreateGroupe(filiere)} />
                 </div>
             </div>
         </div>

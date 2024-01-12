@@ -20,7 +20,6 @@ function Students() {
     
     const [filiere, setFiliere] = useState(0)
     let groupes = GetData(`/filiere/${filiere}/groupes`, filiere);
-
     
     const [groupe, setGroupe] = useState(0)
     let students = GetData(`/groupe/${groupe}/getEtudiants`, groupe)
@@ -62,7 +61,7 @@ function Students() {
 
             <select onChange={(e)=> setGroupe(e.target.value)} className="flex-1 w-full border-2 rounded-md border-gray-300 outline-none px-3 py-1">
                 <option value={0}>Groupe</option>
-                {groupes?.groupes?.map((item,key)=>(
+                {groupes?.map((item,key)=>(
                     <option value={item.id} key={key}>
                         {item.nom}
                     </option>
@@ -94,12 +93,10 @@ function Students() {
             </div>
         }
 
-
-
-
         {module == 0 && module == '0' &&
             <div className='mt-14'>
-                <Header title={lang.students} total={students?.length} create={true} btn={lang.createStudent} setCreateBtn={setCreateBtn}  />
+                <Header title={lang.students} total={students?.length} create={true} btn={lang.createStudent} setCreateBtn={setCreateBtn} />
+
                 <table className="w-full mt-10 text-sm text-left text-gray-500">
                     <thead className="text-xs text-gray-400 uppercase border-b-2 ">
                         <tr>

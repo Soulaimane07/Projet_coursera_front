@@ -176,7 +176,7 @@ export const LoginFunEtud = (spinner, message, data, navigate) => {
         })
 }
 
-export const LoginFunProf = (data, spinner, navigate, message) => {
+export const LoginFunProf = (spinner, message, data, navigate) => {
     spinner(true)
     message(false)
 

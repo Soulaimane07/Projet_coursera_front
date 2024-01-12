@@ -68,11 +68,11 @@ export const ProfCourse = ({item}) => {
     )
 }
 
-export const AffectCourse = ({item, select}) => {
+export const AffectCourse = ({item, select, courId}) => {
     let lang = getLang()?.data.courses
 
     return(
-        <button onClick={()=> select(item?.id)} className=' bg-blue-100 text-left w-full rounded-md px-6 py-5 mb-4 hover:shadow-xl transition-all flex flex-col md:flex-row items-center'>
+        <button onClick={()=> select(item?.id)} className={`${courId === item?.id ? 'bg-blue-300' : 'bg-blue-100'}  text-left w-full rounded-md px-6 py-5 mb-4 hover:shadow-xl transition-all flex flex-col md:flex-row items-center`}>
             <div className='w-full md:w-52 bg-blue-500 h-24 rounded-md mb-4 md:mb-0 flex justify-center items-center'>
                 <SiCoursera size={40} color="white" />
             </div>

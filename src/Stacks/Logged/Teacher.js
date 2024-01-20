@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom'
 import Footer from '../../Layouts/Footer'
 import Home from '../../Pages/Prof/Home'
 import Courses from '../../Pages/Prof/Courses'
+import Students from '../../Pages/Prof/Students'
 
 function Teacher() {
   let lang = getLang()?.data.dashboard
@@ -27,9 +28,7 @@ function Teacher() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/courses' element={<Courses />} />
-          {/* <Route path='/teachers' element={<Teachers />} />
           <Route path='/students' element={<Students />} />
-          <Route path='/filieres' element={<Filiere />} /> */}
         </Routes>
       </div>
       <Footer pages={pages} />

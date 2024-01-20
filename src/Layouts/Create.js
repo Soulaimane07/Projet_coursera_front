@@ -27,7 +27,7 @@ export const CourCreate = ({setCreateBtn}) => {
 
     return (
         <div className="fixed z-20 top-0 left-0 right-0 h-screen bg-gray-800 bg-opacity-40 w-full flex justify-center py-10">
-            <div className=" rounded-md bg-white shadow-2xl w-full md:1/2 lg:w-2/6 mx-10 md:mx-20  lg:mx-0 flex flex-col pb-6 overflow-hidden ">
+            <div className=" rounded-md  bg-white shadow-2xl w-full md:1/2 lg:w-2/6 mx-10 md:mx-20  lg:mx-0 flex flex-col pb-6 overflow-hidden ">
                 <div className="relative text-center py-4 font-medium text-xl border-b-2 border-gray-500">
                     <h2> {lang?.createcour} </h2>
                     <CloseBtn close={setCreateBtn} />
@@ -72,7 +72,7 @@ export const CourCreate = ({setCreateBtn}) => {
                 </div>
 
                 <div className="flex space-x-4 px-10">
-                    <Button text={lang.create} link="/cours/create" fun={PostData} message={setMessage} data={cour} condition={lien === "" || libelle === "" || desc === "" || dateF === "" || dateL === "" || dateC === "" || moduleId === ""} />
+                    <Button text={lang.create} link="/cours/create" fun={PostData} message={setMessage} data={cour} setCreateBtn={setCreateBtn} condition={lien === "" || libelle === "" || desc === "" || dateF === "" || dateL === "" || dateC === "" || moduleId === ""} />
                 </div>
             </div>
         </div>

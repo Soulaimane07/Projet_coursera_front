@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../Layouts/Header'
-import { getLang } from '../../Components/variables'
+import { getLang, serverURL } from '../../Components/variables'
 import { GetData, SearchFun } from '../../Components/Functions'
 import { AdminCourse } from '../../Components/Courses'
 import { CoursesSkeleton } from '../../Components/Skeleton'
@@ -18,6 +18,8 @@ function Courses() {
 
   GetToTop()
   PageTitle(lang.dashboard.cours)
+
+
 
   let courses = GetData("/cours/index")
 

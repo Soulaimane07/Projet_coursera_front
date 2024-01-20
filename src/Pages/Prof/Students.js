@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
 import Header from '../../Layouts/Header'
-import { getLang, uploadsURL } from '../../Components/variables'
-import { GetData, GetToTop, PageTitle } from '../../Components/Functions'
+import { getLang, serverURL, uploadsURL } from '../../Components/variables'
+import { GetData, GetToTop, PageTitle, getUserData } from '../../Components/Functions'
 import { TeachersSkeleton } from '../../Components/Skeleton'
 
 import { LuPenSquare } from "react-icons/lu";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { BiDetail } from "react-icons/bi";
 import { StudentCreate } from '../../Layouts/Create'
+import axios from 'axios'
 
 function Students() {
     let lang = getLang()?.data.groups
+    let profId = getUserData()?.id
 
     GetToTop()
     PageTitle(lang.students)
@@ -19,12 +21,9 @@ function Students() {
     let filieres = GetData('/filiere/getFilieres');
     
     const [filiere, setFiliere] = useState(0)
-    let groupes = GetData(`/filiere/${filiere}/groupes`, filiere);
+    let groupes = GetData(`/groupe/${profId}/${filiere}/getGroupesEnseignesPourFiliere`, filiere);
     
     const [groupe, setGroupe] = useState(0)
-    let students = GetData(`/groupe/${groupe}/getEtudiants`, groupe)
-    
-    
     let modules = GetData(`/groupe/${groupe}/modules`, groupe)
     const [module, setModule] = useState(0)
     let cours = GetData(`/module/${module}/cours`, module)
@@ -32,10 +31,24 @@ function Students() {
     const [cour, setCour] = useState(0)
     let certificats = GetData(`/certificats/${cour}/${groupe}`, cour)
 
+    
+    
+    const ReplaceEtudNom = (certificats) => {
+        certificats.map((item,key)=>(
+            axios.get(`${serverURL}/etudiant/show/${item?.etudiant_id}`)
+                .then(res=>
+                    item['etudiant_id'] = res.data.data[0].nom
+                    )
+                    .catch(err=>
+                        console.log(err)    
+                    )
+        ))
+                
+                return certificats
+    }
 
-    // console.log("Etudiant: ",GetData(`/etudiant/show/${1}`)[0]?.nom);
-
-    const [create, setCreateBtn] = useState(false)
+    ReplaceEtudNom(certificats)
+    
 
   return (
     <div className='mx-20 mt-10'>
@@ -67,13 +80,8 @@ function Students() {
                     </option>
                 ))}
             </select>
-        </div>
 
-        {groupe !== 0 &&
-            <div className='flex space-x-4 justify-center  items-center w-1/2 mx-auto '>
-                <h1 className='font-medium'> Certificats </h1>
-                
-                <select onChange={(e)=> setModule(e.target.value)} className="flex-1 w-full border-2 rounded-md border-gray-300 outline-none px-3 py-1">
+            <select onChange={(e)=> setModule(e.target.value)} className="flex-1 w-full border-2 rounded-md border-gray-300 outline-none px-3 py-1">
                     <option value={0} >Module</option>
                     {modules?.map((item,key)=>(
                         <option value={item.id} key={key}>
@@ -90,78 +98,7 @@ function Students() {
                         </option>
                     ))}
                 </select>
-            </div>
-        }
-
-        {module == 0 && module == '0' &&
-            <div className='mt-14'>
-                <Header title={lang.students} total={students?.length} create={true} btn={lang.createStudent} setCreateBtn={setCreateBtn} />
-
-                <table className="w-full mt-10 text-sm text-left text-gray-500">
-                    <thead className="text-xs text-gray-400 uppercase border-b-2 ">
-                        <tr>
-                            <th scope="col" className="px-6 py-3">
-                                {lang?.email}
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                {lang?.fname}
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                {lang?.lname}
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                CIN
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                {lang?.phone}
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                {lang?.action}
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {students 
-                            ?   students?.map((item,key)=>(
-                                    <tr key={key} className='hover:bg-blue-100 transition-all border-b-1 border-blue-200 text-gray-700'>
-                                        <td>
-                                            <button scope="row" className="px-6 py-4 font-medium whitespace-nowrap hover:text-blue-600">
-                                                {item?.email}
-                                            </button>
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            {item?.prenom}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            {item?.nom}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            {item?.CIN}
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            {item?.numTele}
-                                        </td>
-                                        <td className="">
-                                            <button  className='px-2 opacity-70 hover:opacity-100 transition-all'>
-                                                <BiDetail size={20} />
-                                            </button>
-                                            <button  className='px-2 opacity-70 hover:opacity-100 transition-all'>
-                                                <LuPenSquare size={18} />
-                                            </button>
-                                            <button  className='px-2 opacity-70 hover:opacity-100 transition-all'>
-                                                <FaRegTrashAlt size={18} />
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))
-                            :   <TeachersSkeleton />
-                        }
-                    </tbody>
-                </table>
-
-                {create && <StudentCreate setCreateBtn={setCreateBtn} />}
-            </div>
-        }
+        </div>
 
         {module !== 0 && module !== '0' &&
             <div className='mt-14'>
@@ -190,6 +127,21 @@ function Students() {
                                     <tr key={key} className='hover:bg-blue-100 transition-all border-b-1 border-blue-200 text-gray-700'>
                                         <td className="px-6 py-4">
                                             {item?.etudiant_id}
+                                            {/* {
+                                                axios.get(`${serverURL}/etudiant/show/${item?.etudiant_id}`)
+                                                    .then(res=>
+                                                        console.log(res.data.data[0].nom)
+                                                    )
+                                                    .catch(err=>
+                                                        console.log(err)    
+                                                    )
+
+                                                // console.log(`${serverURL}/etudiant/show/${item?.etudiant_id}`)
+                                            } */}
+
+                                            {/* {
+                                                item.etudiantName ? item.etudiantName : 'Loading...'
+                                            } */}
                                         </td>
                                         <td className="px-6 py-4">
                                             {item?.date_obtention}
